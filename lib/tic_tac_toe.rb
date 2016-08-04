@@ -26,15 +26,15 @@ def valid_move?(board,index)
 end
 def turn(board)
   puts "Please enter 1-9:"
-  input= gets.strip
-  index= input_to_index(input)
+  input= gets.chomp
+    index= input_to_index(input)
   if valid_move?(board,index)== true
     move(board,index,current_player(board))
     display_board(board)
   else
-        until valid_move?(board,index)== true
+  until valid_move?(board,index)== true
       puts "Please enter 1-9:"
-      input= gets.strip
+      input= gets.chomp
       index= input_to_index(input)
     end
   end
@@ -86,15 +86,27 @@ def full?(board)
    else
      win_combination = won?(board)
        return board[win_combination[0]]
+       puts "Congratulations #{board[win_combination[0]]}!"
      end
    end
 def play(board)
-until over?(board)== true
-  turn(board)
-end
-if won?(board)!= false
-  puts "congratulate #{winner(board)}"
-elsif draw?(board)==true
-  puts "It has benn a draw"
-end
+over = over?(board)
+  until  over == true
+    if won?(board) != false
+      winner(board)
+     break
+    end
+    if draw?(board)== true
+     break
+    end
+    turn(board)
+    over = over?(board)
+  end
+  if won?(board)!= false
+    winner(board)
+    puts "Congratulations #{winner(board)}!"
+  end
+  if draw?(board)== true
+    puts "Cats Game!"
+  end
 end
