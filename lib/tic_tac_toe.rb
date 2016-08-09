@@ -17,10 +17,10 @@ def position_taken?(board, index)
 end
 def valid_move?(board,index)
   if index.between?(0,8)
-      if position_taken?(board,index)== false || position_taken?(board,index)== nil
-      true
-    else
+      if position_taken?(board,index)== true
       false
+    else
+      true
     end
   end
 end
@@ -32,11 +32,7 @@ def turn(board)
     move(board,index,current_player(board))
     display_board(board)
   else
-  until valid_move?(board,index)== true
-      puts "Please enter 1-9:"
-      input= gets.chomp
-      index= input_to_index(input)
-    end
+  turn(board)
   end
 end
 def turn_count(board)
