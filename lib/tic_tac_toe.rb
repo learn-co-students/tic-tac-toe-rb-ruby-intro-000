@@ -82,24 +82,18 @@ def full?(board)
    else
      win_combination = won?(board)
        return board[win_combination[0]]
-       puts "Congratulations #{board[win_combination[0]]}!"
      end
    end
 def play(board)
 over = over?(board)
   until  over == true
-    if won?(board) != false
-      winner(board)
-     break
-    end
-    if draw?(board)== true
+    if won?(board) != false || draw?(board)== true
      break
     end
     turn(board)
-    over = over?(board)
+     over = over?(board)
   end
   if won?(board)!= false
-    winner(board)
     puts "Congratulations #{winner(board)}!"
   end
   if draw?(board)== true
