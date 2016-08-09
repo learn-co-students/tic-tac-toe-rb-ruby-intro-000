@@ -3,5 +3,6 @@
 require_relative '../lib/tic_tac_toe'
 
 puts "Welcome to Tic Tac Toe!"
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 display_board(board)
-puts "Please choose a number 1-9:"
+play(board)
