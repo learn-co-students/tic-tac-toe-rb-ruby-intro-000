@@ -49,11 +49,12 @@ def valid_move?(board, index)
 end
 
 def turn(board)
+  value = current_player(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-    if valid_move?(board, index) == true
-      move(board, index, value="X")
+    if valid_move?(board, index)
+      move(board, index, value)
       display_board(board)
     else
       turn(board)
@@ -113,23 +114,23 @@ def won?(board)
   end
 
   def over?(board)
-    full?board || won?(board) || draw?(board)
+    full?(board) || won?(board) || draw?(board)
   end
 
   def winner(board)
       if won?(board)
-      win_combination = won?(board)
-      board[win_combination[0]]
+        win_combination = won?(board)
+        return board[win_combination[0]]
     end
   end
 
   def play(board)
-    while !over?(board)
+    until over?(board)
       turn(board)
-    end
-    if won?(board)
-      puts "Congratulations!"
-    elsif draw?(board)
-        puts "Cat's Game!"
+        if won?(board)
+          puts "Congratulations #{winner(board)}!"
+        elsif draw?(board)
+          puts "Cats Game!"
+        end
     end
   end
