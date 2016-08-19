@@ -58,11 +58,10 @@ def turn_count(board)
   count = 0
   board.each do |space|
     if space == "X" || space == "O"
-      count +=1
-    else
+      count += 1
     end
   end
-    return count
+  count
 end
 
 def current_player(board)
@@ -114,20 +113,16 @@ end
 
 def play(board)
 
-  while over?(board) == false
+  until over?(board)
     turn(board)
-    over?(board)
     won?(board)
   end
 
   if won?(board)
     token = won?(board)
-    puts "Congratulations #{board[token[0]]}!"
-  end
-
-  if draw?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
     puts "Cats Game!"
   end
-
 
 end
