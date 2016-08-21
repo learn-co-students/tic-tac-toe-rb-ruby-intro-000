@@ -91,11 +91,11 @@ def play(board)
   while !over?(board)
     turn(board)
   end
-      if draw?(board)
-        puts "Cats Game!"
-      elsif winner(board) == "X"
+      if winner(board) == "X"
         puts "Congratulations X!"
       elsif winner(board) == "O"
         puts "Congratulations O!"
+      elsif draw?(board)
+        puts "Cats Game!"
       end
 end
