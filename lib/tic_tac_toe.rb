@@ -24,6 +24,24 @@ def move(array,index,player)
   array[index]= player
   display_board(array)
 end
+def turn_count(board)   #  it 'counts occupied positions
+  counter = 0
+  board.each do |element|
+    if element == "X" || element == "O"
+      counter += 1
+    end
+  end
+ return counter
+end
+
+def current_player(board)
+  if (turn_count(board) % 2 == 0)
+    return "X"
+  elsif (turn_count(board) % 2 != 0)
+    return "O"
+  end
+end
+
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
@@ -47,7 +65,7 @@ def full?(board)
 end
 
 def draw?(board)
-  full?(board) && !(won?(board))
+  !won?(board) && full?(board)
 end
 def over?(board)
   if full?(board) || won?(board)
@@ -68,39 +86,18 @@ def winner(board)
     return false
   end
 end
-def turn_count(board)   #  it 'counts occupied positions
-  counter = 0
-  board.each do |element|
-    if element == "X" || element == "O"
-      counter += 1
-    end
-  end
- return counter
-end
-def current_player(board)
-  if (turn_count(board) % 2 == 0)
-    return "X"
-  elsif (turn_count(board) % 2 != 0)
-    return "O"
-  end
-end
 
 def play(board)
-  if current_player(board) == "X"
+  until over?(board)
     turn(board)
-    if winner(board)
-      winnername = winner(board)
-      puts "congrtulation #{winnername}!"
-    elsif draw?(board)
-      puts "Cat's Game"
-    end
-  else
-    turn(board)
-    if winner(board)
-      winnername = winner(board)
-      puts "congrtulation #{winnername}!"
-    elsif draw?(board)
-      puts "Cat's Game"
-    end
+   end
+    if over?(board)
+      if winner(board) == "X"
+        puts "Congratulations X!"
+      elsif winner(board) == "O"
+        puts "Congratulations O!"
+      elsif winner(board) == false
+        puts "Cats Game!"
+      end
   end
 end
