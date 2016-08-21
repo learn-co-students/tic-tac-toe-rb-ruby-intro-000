@@ -10,14 +10,14 @@ WIN_COMBINATIONS = [
 ]
 
 def play(board)
-  while !over?
+  while !over?(board)
       turn(board)
   end
 
-  if won?
+  if won?(board)
     player_winner = "#{winner(board)}"
-    puts "Congratulations...#{player_winner}!"
-  elsif draw?
+    puts "Congratulations #{player_winner}!"
+  elsif draw?(board)
     puts "Cats Game!"
   end
 
