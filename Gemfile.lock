@@ -41,6 +41,3 @@ DEPENDENCIES
   require_all
   rspec
   simplecov
-
-BUNDLED WITH
-   1.10.6
