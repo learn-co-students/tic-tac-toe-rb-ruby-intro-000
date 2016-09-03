@@ -141,6 +141,7 @@ describe './lib/tic_tac_toe.rb' do
       expect(self).to receive(:gets).and_return("1")
 
       turn(board)
+      expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
   end
 
