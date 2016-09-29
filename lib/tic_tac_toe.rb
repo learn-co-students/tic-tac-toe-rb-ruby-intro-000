@@ -69,24 +69,6 @@ end
 # play a turn END
 
 
-
-# Define your play method below
-def play(board)
-  # will change to until over?(board)
-  # check who's turn it is
-  # set the token appropriately
-  # play a turn
-  # if over?(board),
-  # see what ended the game,
-  # if won, announce winner,
-  # otherwise announce a draw.
-  counter = 0
-  until counter == 9
-    counter += 1
-    turn(board)
-  end
-end
-
 # game status methods
 def won?(board)
   WIN_COMBINATIONS.each do |indices|
@@ -113,3 +95,25 @@ end
 def winner(board)
   won?(board) ? board[won?(board)[0]] : nil
 end
+
+# Define your play method below
+def play(board)
+  until over?(board)
+    turn(board)
+  end
+
+  if won?(board)
+    winner = winner(board)
+    puts "Congratulations #{winner}!"
+  else
+    puts "Cats Game!"
+  end
+end
+  # will change to until over?(board)
+  # check who's turn it is
+  # set the token appropriately
+  # play a turn
+  # if over?(board),
+  # see what ended the game,
+  # if won, announce winner,
+  # otherwise announce a draw.
