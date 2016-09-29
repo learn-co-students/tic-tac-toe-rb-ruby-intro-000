@@ -37,21 +37,6 @@ def valid_move?(board, index)
 end
 # play a turn methods END
 
-# play a turn START
-def turn(board)
-  puts "Please enter 1-9:"
-  position = gets.strip
-  index = input_to_index(position)
-  if valid_move?(board, index)
-    current_player = current_player(board)
-    move(board, index, current_player)
-    display_board(board)
-  else
-    turn(board)
-  end
-end
-# play a turn END
-
 #decide curent player methods START
 def turn_count(board)
   count = 0
@@ -67,6 +52,23 @@ def current_player(board)
   turn_count(board).even? ? "X" : "O"
 end
 #decide curent player methods END
+
+# play a turn START
+def turn(board)
+  puts "Please enter 1-9:"
+  position = gets.strip
+  index = input_to_index(position)
+  if valid_move?(board, index)
+    current_player = current_player(board)
+    move(board, index, current_player)
+    display_board(board)
+  else
+    turn(board)
+  end
+end
+# play a turn END
+
+
 
 # Define your play method below
 def play(board)
