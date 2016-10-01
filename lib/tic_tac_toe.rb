@@ -40,7 +40,7 @@ def turn(board)
   number = gets.strip
   index = input_to_index(number)
   if(valid_move?(board, index) == true)
-    move(board,index,value="X")
+    move(board,index,value= current_player(board))
   else
         puts "Please enter a valid number"
         turn(board)
@@ -107,4 +107,19 @@ def current_player(board)
   else
     return "X"
   end
+end
+
+def play(board)
+  while(!over?(board))
+  turn(board)
+end
+if(draw?(board))
+  puts "Cats Game!"
+else
+if(winner(board) == "X")
+  puts "Congratulations X!"
+else
+  puts "Congratulations O!"
+end
+end
 end
