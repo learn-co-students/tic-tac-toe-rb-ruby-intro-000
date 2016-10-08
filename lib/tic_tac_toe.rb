@@ -148,16 +148,14 @@ def winner(board)
 def play(board)
   c=0
   while c<9
-  turn(board)
-
-  if draw?(board) && over?(board)
-    puts "Cats Game!"
-  elsif over?(board) && won?(board)
-      puts "Congratulations #{winner(board)}!"
-
-
-      else
+    turn(board) 
+    over?(board) == false
+    c+=1
+    if draw?(board) && over?(board)
+      puts "Cats Game!"
+      elsif over?(board) && won?(board)
+        puts "Congratulations #{winner(board)}!"
+      elsif over?(board) == true
       end
-      c+=1
     end
   end
