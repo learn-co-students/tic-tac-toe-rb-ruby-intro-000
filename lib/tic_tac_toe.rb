@@ -148,7 +148,7 @@ def winner(board)
 def play(board)
   c=0
   while c<9
-    turn(board) 
+    turn(board)
     over?(board) == false
     c+=1
     if draw?(board) && over?(board)
