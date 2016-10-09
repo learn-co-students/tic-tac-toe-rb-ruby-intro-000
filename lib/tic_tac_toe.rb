@@ -122,6 +122,13 @@ def draw?(board)
 
 
 def over?(board)
+  if won?(board) || draw?(board)
+    return true
+    else true
+      end
+
+
+
   draw?(board)||board
   full?(board)
   end
