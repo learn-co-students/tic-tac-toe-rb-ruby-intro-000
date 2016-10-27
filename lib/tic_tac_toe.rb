@@ -168,12 +168,9 @@ def winner (board)
 end
 
 def over?(board)
-   if full?(board) == true #check if board is full
-    # if won?(board) != false || draw?(board) == true #this is supposed to signify ove
+   if full?(board) == true
    return "true"
-     #else
-     #return false
-    # end
+
    elsif won?(board) != false #now this time, the board isn't full. so we check if somebody won. ask if won != false
    return true #because somebody actually won. return true.
    else
@@ -181,17 +178,17 @@ def over?(board)
   end
 end
 
-# THE HELPER METHODS ARE ALL GOOD PLEASE DO NOT TAMPER FURTHER#####
+
 #play method here
 def play(board)
 
   gameover = over?(board)
   gamewon = won?(board)
   gamedraw = draw?(board)
-  if gamedraw != false
+  if gamedraw != false  #this is to check if the board given in the beginning is a draw. the specfile seems to require the program to check the board for a draw before the game even starts.
     puts "Cats Game!"
   end
-  if gamewon != false
+  if gamewon != false #this too, it requires the game to be checked for a win before the game even starts.
     winner_r = winner(board)
     puts "Congratulations #{winner_r}!"
   end
@@ -210,15 +207,5 @@ def play(board)
        puts "Cats Game!"
        break
      end
-    # if gameover == true
-    #   winner_r = winner(board)
-    #   if winner_r == "X"
-    #     puts "Congratulations #{winner_r}!"
-    #     break
-    #   elsif winner_r == "O"
-    #     puts "Congratulations #{winner_r}!"
-    #     break
-    #   end
-    # end
   end
 end
