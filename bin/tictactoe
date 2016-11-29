@@ -15,6 +15,7 @@ puts ""
 play(board)
 
 puts ""
+anothergame?(board)
 puts "Good stuff"
 puts ""
 #display_board(board)
