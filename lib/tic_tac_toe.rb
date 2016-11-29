@@ -1,14 +1,25 @@
-# Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
-[0,1,2], # Top row
-[3,4,5], # Middle row
-[6,7,8], # Bottom row
-[0,3,6], # Top column
-[1,4,7], # Middle column
-[2,5,8], # End column
-[0,4,8], # Left across
-[2,4,6]  # Right Across
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [6,4,2]
 ]
+
+def play(board)
+  while !over?(board)
+    turn(board)
+  end
+
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
+  end
+end
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -18,56 +29,8 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index(input) #(user_input)
-  input.to_i - 1          #user_input.to_i - 1
-end
-
-def move(board, index, current_player)
-  board[index] = current_player
-end
-# Helper Method
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-
-def valid_move?(board, index)
-#(board[index] == " " || board[index] == "" || board[index] == nil) && index.between?(0, 8)?
-!position_taken?(board, index) && index.between?(0, 8)?
-true : false
-end
-
-def turn(board)
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index, current_player)
-  else
-    print "Invalid Entry: (position is taken)   "
-    turn(board)
-  end
-  display_board(board)
-end
-
-def turn_count(board)
-  counter = 0
-  board.each do |symbol|
-    if symbol == "X" || symbol == "O"
-      counter += 1
-    end
-  end
-  counter
-#board.count{|symbol| symbol == "X" || symbol == "O"}
-end
-
-def current_player(board)
- if turn_count(board) % 2 == 0    #solution w/ if/else
-   "X"
- else
-   "O"
- end
-# (turn_count(board) % 2 == 0) ?  # advanced solution w/ ternary operator
-# X : "O"
+def valid_move?(board, input)
+  input.to_i.between?(1,9) && !position_taken?(board, input.to_i-1)
 end
 
 def won?(board)
@@ -83,28 +46,43 @@ def full?(board)
 end
 
 def draw?(board)
- if !won?(board) && full?(board)
-  puts "Cats Game!"
-  true
-  end
+  !won?(board) && full?(board)
 end
 
 def over?(board)
-  won?(board) || full?(board)
+  won?(board) || draw?(board)
+end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  if !valid_move?(board, input)
+    turn(board)
+  end
+  move(board, input, current_player(board))
+  display_board(board)
+end
+
+def position_taken?(board, location)
+  !(board[location].nil? || board[location] == " ")
+  # Creates a stop on RSpec
+  # !(board[location].nil? || board[location] == "")
+end
+
+def current_player(board)
+  turn_count(board) % 2 == 0 ? "X" : "O"
+end
+
+def turn_count(board)
+  board.count{|token| token == "X" || token == "O"}
+end
+
+def move(board, location, player = "X")
+  board[location.to_i-1] = player
 end
 
 def winner(board)
   if winning_combo = won?(board)
     board[winning_combo.first]
-  end
-end
-
-def play(board)
-  9.times do
-    turn(board)
-  #    counter=0
-  #    while counter <9
-  #      turn(board)
-  #      counter +=1
   end
 end
