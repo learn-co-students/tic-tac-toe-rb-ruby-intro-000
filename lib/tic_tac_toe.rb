@@ -106,7 +106,7 @@ def play(board)
   if won?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "Cats Game!"
+    #puts "Cats Game!"
   end
 end
 
@@ -115,7 +115,7 @@ def anothergame?(board)
   while true
     print "Would you like to play again? [y/n]: "
     case gets.strip
-      when 'Y', 'y', 'j', 'J', 'yes' #j for Germans (Ja)
+      when 'Y', 'y', 'yes'
         play(board) # Game.play
       when /\A[nN]o?\Z/ #n or no
         break

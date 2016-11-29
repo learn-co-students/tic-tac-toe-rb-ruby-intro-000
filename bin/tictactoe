@@ -15,7 +15,6 @@ puts ""
 play(board)
 
 puts ""
-anothergame?(board)
+#anothergame?(board)
+#puts ""
 puts "Good stuff"
-puts ""
-#display_board(board)
