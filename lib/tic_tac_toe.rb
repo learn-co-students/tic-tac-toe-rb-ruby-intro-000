@@ -34,7 +34,7 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player = "X")
+def move(board, index, current_player)
   board[index] = current_player
 end
 
@@ -51,20 +51,26 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
   end
 end
 
+n = 1
+
 def play(board)
-  m = 0
-  while m < 9 do
+  while !over?(board)
     turn(board)
-    m += 1
   end
-  puts "The board is now full"
+  if draw?(board) == true
+    puts "Cats Game!"
+  elsif winner(board) == "X"
+    puts "Congratulations X!"
+  elsif winner(board) == "O"
+    puts "Congratulations O!"
+  end
 end
 
 
@@ -107,11 +113,7 @@ def full?(board)
 end
 
 def draw?(board)
-  if full?(board) == true && won?(board) == false
-    return true
-  else
-    return false
-  end
+  return !won?(board) && full?(board)
 end
 
 def over?(board)
