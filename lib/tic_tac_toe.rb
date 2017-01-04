@@ -99,17 +99,13 @@ def won?(board)
   end
   if y != 1000
     return WIN_COMBINATIONS[y]
-  elsif y == 1000
+  else
     return false
   end
 end
 
 def full?(board)
-  if board.select{ |banana| banana == " "} != []
-    return false
-  else
-    return true
-  end
+  return board.select{ |banana| banana == " "} == []
 end
 
 def draw?(board)
