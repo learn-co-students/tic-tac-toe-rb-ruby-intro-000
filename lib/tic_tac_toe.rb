@@ -126,8 +126,8 @@ def play(board)
     turn(board)
     turn_count+=1
   end
-  if over?(board) || draw?(board) || won?(board)
-  end
+  #if over?(board) || draw?(board) || won?(board)
+  #end
   if won?(board)
     winner = winner(board)
     puts "Congratulations #{winner}!"
