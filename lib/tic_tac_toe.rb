@@ -37,7 +37,7 @@ end
 
 # accepts board and returns true if move is valid
 def valid_move?(board, index)
-  if position_taken?(board, index) == true
+  if position_taken?(board, index)
     false
   elsif position_taken?(board, index) == false && index.between?(0,8)
     true
@@ -52,11 +52,11 @@ def turn(board)
   index = input_to_index(input)
   character = current_player(board)
 
-  if valid_move?(board, index) == true
+  if valid_move?(board, index)
     move(board, index, character)
     display_board(board)
   else
-    puts "Invalid move"
+#    puts "Invalid move"
     turn(board)
   end
 end
@@ -118,7 +118,9 @@ end
 
 # that accepts a board and returns true if the board has been won, is a draw, or is full.
 def over?(board)
-  if (won?(board) && true) || (full?(board) && true)
+  #require 'pry'
+  #binding.pry
+  if won?(board) || draw?(board)
     true
   end
 end
@@ -135,15 +137,14 @@ def winner(board)
 end
 
 def play(board)
-  while over?(board) != true
+  while !over?(board)
     turn(board)
-    over?(board)
   end
 
-  if won?(board) && true == true
-    puts "Congratulations! #{winner(board)} has won the game!"
-  elsif draw?(board) && true == true
-    puts "The game is a tie."
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cats Game!"
     #  elsif over?(board) == false
     #   turn(board)
 
