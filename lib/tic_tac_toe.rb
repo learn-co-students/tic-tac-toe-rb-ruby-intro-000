@@ -105,36 +105,36 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) == true || full?(board) == true || draw?(board) == true
+  if won?(board) || full?(board) || draw?(board)
     return true
   end
+
+  #won?(board) || draw?(board)
 end
 
 def winner(board)
-  if full?(board) == false && draw?(board) == false && over?(board) == false
-    return nil
-  elsif
-    won?(board)
-      win_arr = won?(board)
-        win_arr.each do |index|
-          return board[index]
-    end
+  #if full?(board) == false && draw?(board) == false && over?(board) == false
+  #  return nil
+  #elsif
+  #  won?(board)
+  ##      win_arr.each do |index|
+    #      return board[index]
+    #end
+    if winning_combo = won?(board)
+    board[winning_combo.first]
   end
 end
 
 def play(board)
-  turn_count = 0
-  while turn_count < 9 && over?(board) == false
+  while !over?(board)
     turn(board)
-    turn_count+=1
   end
-  #draw?(board)
-  #won?(board)
-  winner(board)
     #winner = winner(board)
-  puts "Congratulations #{winner(board)}!"
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+
   #binding.pry
-if draw?(board) == true
+elsif draw?(board) == true
     puts "Cats Game!"
   end
 end
