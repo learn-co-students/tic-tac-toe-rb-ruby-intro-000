@@ -36,8 +36,7 @@ end
    user_move = input_to_index(input)
 
    if valid_move?(board, user_move)
-     player = current_player(board)
-     move(board, user_move, player)
+     move(board, user_move, current_player(board))
      display_board(board)
    else
      turn(board)
