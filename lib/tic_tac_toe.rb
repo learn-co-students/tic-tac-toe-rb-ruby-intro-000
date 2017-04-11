@@ -82,6 +82,8 @@ def won?(board)
     if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
       #returns the winning combination array indexes aka win_combination aka the winning array
         return win_combination
+    else
+      false
     end
   end
 
@@ -110,8 +112,12 @@ def full?(board)
 end
 
 def draw?(board)
-  if full?(board)==true && won?(board)==false
+  full?(board)
+
+  if won?(board)==false && full?(board)==true
     return true
+  else
+    false
   end
 end
 
@@ -132,8 +138,19 @@ end
 
 def play(board)
   counter = 0
-  until counter == 9
-      counter += 1
-      turn(board)
+
+until counter == 9
+    if over?(board)
+      if won?(board)
+        "Congratulations #{winner(board)}!"
+      elsif draw?(board)
+        "Cats Game!"
+      end
+      break
+    end
+
+    counter += 1
+    turn(board)
+
   end
 end
