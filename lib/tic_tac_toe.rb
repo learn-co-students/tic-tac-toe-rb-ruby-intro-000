@@ -23,8 +23,8 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, player_token)
-  board[index] = player_token
+def move(board, index, player)
+  board[index] = player
 end
 
 def position_taken?(board, location)
@@ -39,23 +39,15 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  player_token = current_player(board)
-  if valid_move?(board,index)
-    move(board,index,player_token)
-    display_board(board)
-  else
+  if !(valid_move?(board,index))
     turn(board)
   end
+  move(board,index,current_player(board))
+  display_board(board)
 end
 
 def turn_count(board)
-  counter = 0
-  board.each do |player_char|
-    if player_char == "X" || player_char  == "O"
-      counter += 1
-    end
-  end
-  return counter
+board.count{|token| token=="X" ||token=="O"}
 end
 
 def current_player(board)
@@ -97,60 +89,36 @@ def won?(board)
 end
 
 def full?(board)
-  WIN_COMBINATIONS.all? do |full_board|
-  #grab each index from the curret full_board array
-  f_index_1 = full_board[0]
-  f_index_2 = full_board[1]
-  f_index_3 = full_board[2]
-
-  #if each index is occupied, return true
-    if position_taken?(board,f_index_1) == true && position_taken?(board,f_index_2) == true && position_taken?(board,f_index_3) == true
-      #returns true if board is full
-        return true
-    end
+  board.all?do |token|
+  token == "X" || token == "O"
   end
 end
 
 def draw?(board)
-  full?(board)
-
-  if won?(board)==false && full?(board)==true
-    return true
-  else
-    false
-  end
+  !won?(board) && full?(board)
 end
 
 def over?(board)
-  if won?(board)==true || draw?(board) ==true || full?(board)==true
-    return true
-  end
+  won?(board) || draw?(board)
 end
 
 def winner(board)
-  if won?(board)
-    win_array = won?(board)
-    board[win_array[0]]
+  win_array = won?(board)
+  if won?(board)!=false
+    return board[win_array[0]]
   else
-    nil
+    return nil
   end
 end
 
 def play(board)
-  counter = 0
 
-until counter == 9
-    if over?(board)
-      if won?(board)
-        "Congratulations #{winner(board)}!"
-      elsif draw?(board)
-        "Cats Game!"
-      end
-      break
-    end
-
-    counter += 1
-    turn(board)
-
-  end
+while !(over?(board))
+  turn(board)
+end
+if won?(board)!=false
+  puts "Congratulations #{winner(board)}!"
+elsif draw?(board)
+  puts "Cats Game!"
+end
 end
