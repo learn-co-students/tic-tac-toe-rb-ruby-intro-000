@@ -29,3 +29,64 @@ def valid_move?(board,index)
     false
   end  
 end
+
+def turn(board)
+  puts "Where would you like to go?"
+  puts "Please enter 1-9:"
+  user_input = gets.strip
+  index = input_to_index(user_input)
+  validity = valid_move?(board,index)
+  while validity != true
+    puts "Invalid move.  Please enter 1-9:"
+    user_input = gets.strip
+    index = input_to_index(user_input)
+    validity = valid_move?(board,index)
+  end
+  move(board,index,"X")
+  display_board(board)
+end
+
+def turn_count(board)
+  counter = 0
+  board.each do |turn|
+    if turn == "X" || turn == "O"
+      counter +=1
+    end
+  end
+  counter
+end
+
+def current_player(board)
+  count = turn_count(board)
+  if count % 2 == 0
+    "X"
+  else
+    "O"
+  end
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |win_combo|
+    board[win_combo[0]] == board[win_combo[1]] && board[win_combo[0]] == board[win_combo[2]] && position_taken?(board, win_combo[1])
+  end
+end
+
+def full?(board)
+  board.none? do |empty|
+    empty == " " || empty.nil?
+  end
+end
+
+def draw?(board)
+  won?(board) == nil && full?(board) == true
+end
+
+def over?(board)
+  won?(board) == true || full?(board) == true
+end
+
+def winner(board)
+  if won?(board) != nil
+    winner = board[won?(board)[0]]
+  end
+end
