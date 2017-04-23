@@ -17,16 +17,12 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
-def input_to_index(input)
-  index = input.to_i - 1
+def input_to_index(user_input)
+  index = user_input.to_i - 1
 end
 
 def valid_move?(board,index)
-  if (index.between?(0,8) == true && position_taken?(board,index) == false)
-    true
-  elsif (index.between?(0,8) == false || position_taken?(board,index) == true)
-    false
-  end  
+  index.between?(0,8) && !position_taken(board,index)  
 end
 
 def won?(board)
@@ -61,8 +57,7 @@ def turn(board)
     index = input_to_index(user_input)
     validity = valid_move?(board,index)
   end
-  move(board,index,"X")
-  display_board(board)
+  move(board,index,current_player(board))
 end
 
 def position_taken?(board, index)
@@ -89,9 +84,9 @@ def turn_count(board)
 end
 
 def move (board,index,character)
-  player = current_player(board)
-  board[index] = player
-  board
+  board[index] = character
+  turn_count(board)
+  display_board(board)
 end
 
 def winner(board)
@@ -99,3 +94,14 @@ def winner(board)
     winner = board[won?(board)[0]]
   end
 end
+
+def play(board)
+  until over?(board) == true
+    turn(board)
+  end
+  if draw?(board)
+    puts "Cats Game!"
+  else won?(board)
+    puts "Congratulations #{winner(board)}!"
+  end
+end  
