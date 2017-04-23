@@ -1,0 +1,29 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/countrysc-68598/code/labs/tic-tac-toe-rb-ruby-intro-000/lib/tic_tac_toe.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null
+      ]
+    },
+    "timestamp": 1492963191
+  }
+}
