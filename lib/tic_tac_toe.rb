@@ -17,3 +17,7 @@ def move (board,index,character = "X")
   board[index] = character
   board
 end
+
+def position_taken?(board, index)
+  !(board[index].nil? || board[index] == " ")
+end
