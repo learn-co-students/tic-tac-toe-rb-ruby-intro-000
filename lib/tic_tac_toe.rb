@@ -46,14 +46,8 @@ def turn(board)
   character = current_player(board)
   if valid_move?(board, index) == true
     move(board, index, character)
-  else
-    until valid_move?(board,index) == true
-      puts "Please input 1-9:"
-      user_input = gets.strip
-      index = input_to_index(user_input)
-      valid_move?(board, index)
-    end
-    move(board,index, character)
+    else
+      turn(board)
   end
   display_board(board)
 end
@@ -61,7 +55,7 @@ end
 def turn_count(board)
 counter = 0
   board.each do |index|
-    if index != " "
+    if !(index.nil? || index == " " || index == "")
         counter += 1
     end
   end
@@ -90,6 +84,7 @@ def won?(board)
       win_combination
     end
   end
+  return false
 end
 
 def full?(board)
@@ -99,7 +94,7 @@ def full?(board)
 end
 
 def draw?(board)
-  if won?(board) == nil && full?(board) == true
+  if won?(board) == false && full?(board) == true
     true
   else
     false
@@ -107,17 +102,15 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) != nil
+  if won?(board) || draw?(board)
     true
-  elsif draw?(board) == true
-    true
-  else full?(board) == false
+  elsif full?(board) == false
     false
   end
 end
 
 def winner(board)
-  if over?(board) == true && won?(board) != nil
+  if over?(board) && won?(board)
     win_char = won?(board)
     board[win_char[0]]
   else
@@ -126,15 +119,15 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) == true do
+  until over?(board) do
     turn(board)
     over?(board)
   end
 
-  if won?(board) != nil
+  if won?(board)
     winner = winner(board)
     puts "Congratulations #{winner}!"
-  elsif draw?(board) == true
+  elsif draw?(board)
     puts "Cats Game!"
   end
 end
