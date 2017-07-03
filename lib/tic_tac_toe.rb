@@ -65,12 +65,13 @@ def won?(board)
 end
 
 def full?(board)
-  empty_items = board.select{|element| empty_position?(element)}
-  if empty_items.length > 0
-    false
-  else
-    true
-  end
+  # empty_items = board.select{|element| empty_position?(element)}
+  # if empty_items.length > 0
+  #   false
+  # else
+  #   true
+  # end
+  board.all? {|element| element == "X" || element == "O"}
 end
 
 def empty_position?(position_value)
@@ -82,19 +83,11 @@ def empty_position?(position_value)
 end
 
 def draw?(board)
-  if full?(board) && !won?(board)
-    true
-  else
-    false
-  end
+  full?(board) && !won?(board)
 end
 
 def over?(board)
-  if draw?(board) || won?(board)
-    true
-  else
-    false
-  end
+  draw?(board) || won?(board)
 end
 
 def winner(board)
@@ -115,11 +108,7 @@ def turn_count(board = [" ", " ", " ", " ", " ", " ", " ", " ", " "])
 end
 
 def current_player(board = [" ", " ", " ", " ", " ", " ", " ", " ", " "])
-  if turn_count(board) % 2 == 0
-    "X"
-  else
-    "O"
-  end
+  turn_count(board) % 2 == 0? "X" : "O"
 end
 
 def turn(board)
