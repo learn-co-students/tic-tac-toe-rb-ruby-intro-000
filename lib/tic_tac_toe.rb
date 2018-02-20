@@ -132,11 +132,22 @@ def over?(board)
 end
 
 def winner(board)
-  if !!won?(board) == true && board[won?(board)[0]] == "X"
+  if !!won?(board) && board[won?(board)[0]] == "X"
     return "X"
-  elsif !!won?(board) == true && board[won?(board)[0]] == "O"
+  elsif !!won?(board) && board[won?(board)[0]] == "O"
     return "O"
   else
     return nil
+  end
+end
+
+def play(board)
+  until over?(board)
+    turn(board)
+  end
+  if !!winner(board)
+    puts "Congratulations #{winner(board)}!"
+  else
+    puts "Cat's Game!"
   end
 end
