@@ -1,6 +1,3 @@
-# Helper Method
-require 'pry'
-
 WIN_COMBINATIONS = [
   [0,1,2], # Top row
   [3,4,5],
@@ -12,31 +9,32 @@ WIN_COMBINATIONS = [
   [2,4,6]
   ]
 
-board = [" "," "," "," "," "," "," "," "," "]
 
+# MAIN UTILITY METHODS ##########################################
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
 end
 
-# Define your WIN_COMBINATIONS constant
   
 def won?(b) # b short for board
   WIN_COMBINATIONS.find do |win|
-    # board[0..1]
     b[win[0]] == b[win[1]] && b[win[1]] == b[win[2]] && b[win[0]] != " "
   end
 end
 
+# CHECK GAME STATUS ####################################
 def full?(board)
   return board.none? {|xo| xo == " "}
 end
+
 
 def draw?(board)
   return full?(board) && !won?(board)
 end
 
+
 def over?(board)
-  return full?(board) || won?(board)
+  return draw?(board) || won?(board)
 end
 
 def winner(board)
@@ -71,20 +69,26 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board, index)
-    char = current_player(board) 
-    move(board,index,char) 
-    display_board(board)
-  else 
-    turn(board)
+  loop do
+    if valid_move?(board, index)
+      char = current_player(board) 
+      move(board,index,char) 
+      display_board(board)
+      break
+    end
   end
 end
 
 def play(board)
-  puts "Welcome to Tic Tac Toe!"
-  display_board(board)
-  until over?(board)
+
+  until over? 
     turn(board)
+  end
+  
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
   end
 end
 
