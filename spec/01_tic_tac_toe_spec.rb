@@ -91,16 +91,16 @@ describe './lib/tic_tac_toe.rb' do
       board = ["X", " ", " ", " ", " ", " ", " ", " ", "O"]
 
       position = 0
-      expect(position_taken?(board, position)).to be(true)
+      expect(position_taken?(board, position)).to be_truthy
 
       position = 8
-      expect(position_taken?(board, position)).to be(true)
+      expect(position_taken?(board, position)).to be_truthy
 
       position = 1
-      expect(position_taken?(board, position)).to be(false)
+      expect(position_taken?(board, position)).to be_falsey
 
       position = 7
-      expect(position_taken?(board, position)).to be(false)
+      expect(position_taken?(board, position)).to be_falsey
     end
   end
 
@@ -197,10 +197,10 @@ describe './lib/tic_tac_toe.rb' do
       draw?(board)
     end
 
-    it 'calls full?' do 
+    it 'calls full?' do
       board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
 
-      expect(self).to receive(:full?).with(board)      
+      expect(self).to receive(:full?).with(board)
       draw?(board)
     end
 
