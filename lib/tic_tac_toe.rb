@@ -10,6 +10,18 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
+# play method
+def play(board)
+  while !over?(board)
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
+end
+
 # display_board method
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -54,11 +66,10 @@ end
 # turn method
 def turn(board)
   puts "Please enter 1-9:"
-  user_move = gets.chomp
-  character = 'X'
-  index = input_to_index(user_move)
-  if valid_move?(board,index)
-    move(board, index, character)
+  user_input = gets.strip
+  index = input_to_index(user_input)
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -138,19 +149,5 @@ end
 def winner(board)
   if win_combination = won?(board)
     board[win_combination.first]
-  end
-end
-
-# play method
-def play(board)
-  turn(board)
-  until over?(board) == true
-    turn_count(board)
-  end
-  if winner(board) == true
-    puts "Congratulations #{winner(board)}!"
-  elsif
-    draw?(board)
-    puts "Cat's Game!"
   end
 end
