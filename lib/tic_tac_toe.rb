@@ -23,3 +23,9 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
+# Convert user input to valid board index
+def input_to_index(d)
+  digit = d.to_i
+  digit -= 1
+  return digit
+end
