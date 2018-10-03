@@ -29,3 +29,8 @@ def input_to_index(d)
   digit -= 1
   return digit
 end
+
+# Allows the player to make a move
+def move(board, index, char)
+  board[index] = char
+end
