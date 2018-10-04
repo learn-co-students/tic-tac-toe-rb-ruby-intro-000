@@ -34,3 +34,8 @@ end
 def move(board, index, char)
   board[index] = char
 end
+
+# Checks to see if the given board position is available
+def position_taken?(board, index)
+  (board[index] == " ") || (board[index] == "") || (board[index] == nil) ? false : true
+end
