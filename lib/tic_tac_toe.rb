@@ -53,3 +53,16 @@ def valid_move?(board,index)
     end
   end
 end
+
+# Allows the user to take a turn
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  go = input_to_index(input)
+  if (valid_move?(board, go))
+    move(board, go, 'X')
+    display_board(board)
+  else
+    turn(board)
+  end
+end
