@@ -77,3 +77,42 @@ end
 def current_player(board)
   turn_count(board).even? ? "X" : "O"
 end
+
+# Determines if the board is full
+def full?(board)
+  if board.count { |x| x == "X" || x == "O" } == 9 
+    true
+  else
+    false
+  end
+end
+
+# Checks to see if there's a winning combination
+def won?(board)
+  win_combo = nil
+
+  count_letter = lambda do |arr, letter| 
+    true if arr.count(letter) === 3
+  end
+
+  if board.count { |x| x == " "} == 9
+    false
+
+  else
+
+    WIN_COMBINATIONS.each do |combo|
+      positions = [ board[combo[0]], board[combo[1]], board[combo[2]] ]
+      if count_letter[positions, "O"] 
+        win_combo = combo
+      elsif count_letter[positions, "X"] 
+        win_combo = combo
+      elsif full?(board)
+        false
+      else
+        false
+      end
+    end
+
+  end
+  return win_combo
+end
