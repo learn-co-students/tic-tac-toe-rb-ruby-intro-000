@@ -66,3 +66,9 @@ def turn(board)
     turn(board)
   end
 end
+
+# Gets the number of turns played
+def turn_count(board)
+  turns = board.count { |i| i == 'X' || i == 'O' }
+  turns
+end
