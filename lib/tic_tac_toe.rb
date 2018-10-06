@@ -72,3 +72,8 @@ def turn_count(board)
   turns = board.count { |i| i == 'X' || i == 'O' }
   turns
 end
+
+# Determines whose turn it is to go
+def current_player(board)
+  turn_count(board).even? ? "X" : "O"
+end
