@@ -127,3 +127,12 @@ def draw?(board)
     false
   end
 end
+
+# Determines if the game is over
+def over?(board)
+  if won?(board) || draw?(board) || full?(board)
+    true
+  else
+    false
+  end
+end
