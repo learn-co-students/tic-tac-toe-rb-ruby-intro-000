@@ -136,3 +136,22 @@ def over?(board)
     false
   end
 end
+
+# Determines which player has won
+def winner(board)
+  winner = nil
+  pos = won?(board) ? won?(board) : 9 # used an int to avoid undefined method `[]' for nil:NilClass
+  player = board.values_at(pos[0], pos[1], pos[2])
+
+  count_letter = lambda do |arr, letter| 
+    true if arr.count(letter) === 3
+  end
+
+  if count_letter[player, "X"]
+    winner = "X"
+  elsif count_letter[player, "O"]
+    winner = "O"
+  end 
+    
+  return winner
+end
