@@ -13,7 +13,7 @@ WIN_COMBINATIONS = [
 ]
 
 # Define the board display
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "] 
+# board = [" ", " ", " ", " ", " ", " ", " ", " ", " "] 
 
 def display_board(board)
   line = lambda { |x,y,z| " %s | %s | %s " % [x,y,z] }
@@ -57,10 +57,10 @@ end
 # Allows the user to take a turn
 def turn(board)
   puts "Please enter 1-9:"
-  input = gets.strip
+  input = gets
   go = input_to_index(input)
   if (valid_move?(board, go))
-    move(board, go, 'X')
+    move(board, go, current_player(board))
     display_board(board)
   else
     turn(board)
@@ -154,4 +154,19 @@ def winner(board)
   end 
     
   return winner
+end
+
+# Define the play method
+def play(board)
+  until over?(board)
+    if won?(board)
+      puts "Congratulations! #{winner(board)}"
+      break
+    elsif draw?(board)
+      puts "Cat's Game!"
+      break
+    else
+      turn(board)
+    end
+  end
 end
