@@ -1,4 +1,4 @@
-
+# Tic Tac Toe game logic
 
 # Define win combinations
 WIN_COMBINATIONS = [
@@ -156,17 +156,15 @@ def winner(board)
   return winner
 end
 
-# Define the play method
+# Define the main method for the game
 def play(board)
+  congrats = Proc.new { |player| puts "Congratulations #{player}!" }
+  tie = Proc.new { puts "Cat's Game!" }
+  
   until over?(board)
-    if won?(board)
-      puts "Congratulations! #{winner(board)}"
-      break
-    elsif draw?(board)
-      puts "Cat's Game!"
-      break
-    else
-      turn(board)
-    end
+    turn(board)
   end
+
+  congrats.call(winner(board)) if won?(board)
+  tie.call if draw?(board)
 end
