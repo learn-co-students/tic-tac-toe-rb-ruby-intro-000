@@ -12,9 +12,6 @@ WIN_COMBINATIONS = [
   [2,4,6] # / diagonal
 ]
 
-# Define the board display
-# board = [" ", " ", " ", " ", " ", " ", " ", " ", " "] 
-
 def display_board(board)
   line = lambda { |x,y,z| " %s | %s | %s " % [x,y,z] }
   dashes = "-"*11
@@ -80,11 +77,7 @@ end
 
 # Determines if the board is full
 def full?(board)
-  if board.count { |x| x == "X" || x == "O" } == 9 
-    true
-  else
-    false
-  end
+   board.all? { |x| x == "X" || x == "O" }  
 end
 
 # Checks to see if there's a winning combination
@@ -106,8 +99,8 @@ def won?(board)
         win_combo = combo
       elsif count_letter[positions, "X"] 
         win_combo = combo
-      elsif full?(board)
-        false
+      # elsif full?(board)
+        # false
       else
         false
       end
@@ -119,13 +112,7 @@ end
 
 # Checks to see if there's a draw
 def draw?(board)
-  if !won?(board) && full?(board)
-    true
-  elsif !won?(board) && !full?(board)
-    false
-  elsif won?(board)
-    false
-  end
+  !won?(board) && full?(board)
 end
 
 # Determines if the game is over
