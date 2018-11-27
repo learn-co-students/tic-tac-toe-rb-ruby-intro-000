@@ -20,26 +20,37 @@ def input_to_index(input)
   input = (input.to_i) - 1
 end
 
-def move(board, index, current_player = "X")
-  board[index] = current_player
+def position_taken?(board, index)
+  if board[index] == " " || board[index] == "" || board[index] == nil
+    false
+  else
+    true
+  end
 end
 
-def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
+def move(board,index,value = "X")
+  board[index] = value
 end
 
-def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+def valid_move?(board,index)
+  if index.between?(0,8) && !position_taken?(board,index)
+    true
+  else
+    false
+  end
 end
 
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
-  if !valid_move?(board, input)
-    turn(board)
-  end
-  move(board,input,current_player(board))
-  display_board(board)
+  index = input_to_index(input)
+
+    if valid_move?(board,index)
+      move(board,index,value = "X")
+      display_board(board)
+    else
+      turn(board)
+    end
 end
 
 def turn_count(board)
