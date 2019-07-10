@@ -23,24 +23,20 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, user_input)
-  board[index] = user_input
+def move(board, index, current_player)
+  board[index] = current_player
 end
 
 def position_taken?(board, index)
-  if board[0] == " "
-    false
-  elsif board[0] == ""
-    false
-  elsif board[0] == "X"
-    true
-  elsif board[0] == "O"
-    true
-  elsif board[0] == nil
-    false
-  else
-  end
+ taken = nil
+ if (board[index] ==  " " || board[index] == "" || board[index] == nil)
+   taken = false
+ else
+   taken = true
+ end
+ taken
 end
+
 
 def valid_move?(board, index)
   if position_taken?(board, index) == false && index.between?(0,8) == true
@@ -52,8 +48,8 @@ def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
   index = input_to_index(user_input)
-  if valid_move?(board, index)
-    move(board, index)
+  if valid_move?(board, index, current_player)
+    move(board, index, current_player)
     display_board(board)
   else
     turn(board)
@@ -61,7 +57,6 @@ def turn(board)
 end
 
 def turn_count(board)
-
   turns = 0
   board.each do |token|
     if token == "X" || token == "O"
@@ -116,4 +111,12 @@ def winner(board)
     if won?(board)
       board[winningcombo[0]]
     end
+end
+
+def play(board)
+  counter = 0
+  until counter == 9
+    turn(board)
+    counter += 1
+  end
 end
