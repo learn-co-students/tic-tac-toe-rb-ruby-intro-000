@@ -33,8 +33,6 @@ def draw?(board)
   !won?(board) && full?(board)
 end
 
-x_win_diagonal = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
-
 def winner (board)
 if index = won?(board)
     board [index.first]
