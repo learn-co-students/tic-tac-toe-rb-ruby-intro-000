@@ -10,7 +10,13 @@ end
 WIN_COMBINATIONS=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
 def input_to_index(input)
-  return to_i(input)-1
+  index=input.to_i
+  index=index-1
+  if index >=0 || index <=8
+    return index
+  else
+    return -1
+  end
 end
 
 def move(board,index,char)
