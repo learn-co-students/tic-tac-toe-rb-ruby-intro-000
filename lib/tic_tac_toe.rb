@@ -39,16 +39,19 @@ def valid_move?(board,index)
   end
 end
 
-def turn()
-  puts"Enter a position: "
+def turn(board)
+  puts "Enter a position: "
   input=gets
   index=input_to_index(input)
   if valid_move?(board,index)
-    move(board,index,char)
+    move(board,index,current_player(board))
     display_board(board)
   else
-    puts"Enter a position: "
-    input=gets
+    while !valid_move?(board,index)
+      puts "Enter a position: "
+      input=gets
+      index=input_to_index(input)
+    end
   end
 end
 
@@ -138,9 +141,9 @@ def over?(board)
     end
   end
 end
+
 def winner(board)
   if won?(board)
-
     returned_win=won?(board)
     won?(board).each do |position|
       if board[position]=="X"
