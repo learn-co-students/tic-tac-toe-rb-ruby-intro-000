@@ -1,5 +1,5 @@
 # Tic Tac Toe in Ruby
-
+[![Run on Repl.it](https://repl.it/badge/github/Pratik-Gohil/tic-tac-toe-rb-ruby-intro-000)](https://repl.it/github/Pratik-Gohil/tic-tac-toe-rb-ruby-intro-000)
 ## Overview
 
 We'll build a two-player CLI version of Tic Tac Toe by defining a set of methods
