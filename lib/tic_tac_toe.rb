@@ -67,22 +67,11 @@ WIN_COMBINATIONS = [
 
 # Define won?, full?, draw?, over?, and winner below
 def won?(board)
-  WIN_COMBINATIONS.each {|win_combo|
-    index_0 = win_combo[0]
-    index_1 = win_combo[1]
-    index_2 = win_combo[2]
-
-    position_1 = board[index_0]
-    position_2 = board[index_1]
-    position_3 = board[index_2]
-
-    if position_1 == "X" && position_2 == "X" && position_3 == "X"
-      return win_combo
-    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-      return win_combo
-    end
-  }
-  return false
+  WIN_COMBINATIONS.detect do |combo|
+    board[combo[0]] == board[combo[1]] &&
+    board[combo[1]] == board[combo[2]] &&
+    position_taken?(board, combo[0])
+  end
 end
 
 def full?(board)
@@ -94,11 +83,7 @@ def draw?(board)
 end
 
 def over?(board)
-  if won?(board) || draw?(board)
-    return true
-  else
-    return false
-  end
+  won?(board) || full?(board)
 end
 
 def winner(board)
@@ -108,13 +93,27 @@ def winner(board)
 end
 
 def play(board)
-  until over?(board) == true
-     turn(board)
-   end
-
-   if won?(board)
-     puts "Congratulations #{winner(board)}!"
-   elsif draw?(board)
-     puts "Cat's Game!"
-   end
+  display_board(board)
+  puts "X goes first"
+    endgame = true
+    getinput = ""
+    while endgame
+      puts "Please enter a position"
+      getinput = gets.strip
+      if position_taken?(board, input_to_index(getinput))
+        puts "Position is taken bruh"
+      else
+        move(board, input_to_index(getinput))
+      end
+      display_board(board)
+      if over?(board)
+        endgame = false
+        if draw?(board)
+          puts "It was a draw!"
+        elsif won?(board)
+          puts "winner winner chicken dinner!"
+          puts "player #{winner(board)} wins!"
+        end
+      end
+    end
 end
