@@ -12,6 +12,7 @@ WIN_COMBINATIONS = [
 ]
 
 board = [" "," "," "," "," "," "," "," "," "]
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -96,7 +97,7 @@ def play(board)
     turn(board)
   end
   if won?(board)
-    puts "Congrats #{winner(board)}"
+    puts "Congrats " + winner(board)
   elsif draw?(board)
     puts "Cat's Game!"
   end
