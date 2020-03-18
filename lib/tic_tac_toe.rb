@@ -41,7 +41,6 @@ def valid_move?(board, index)
 end
 
 def turn(board)
-  if won?(board) && draw?(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
@@ -51,7 +50,6 @@ def turn(board)
   else
     turn(board)
   end
-end
 end
 
 def turn_count(board)
@@ -95,7 +93,6 @@ end
 def play(board)
   until over?(board)
     turn(board)
-  end
   if won?(board)
     puts "Congrats " + board[won?(board)[0]]
   elsif draw?(board)
