@@ -88,7 +88,7 @@ end
 
 def winner(board)
   # won?(board) ? board[won?(board)[0]] : nil
-  if winner_character = won?(board)
+  if winning_character = won?(board)
     board[winning_character.first]
   end
 end
