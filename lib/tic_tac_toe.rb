@@ -96,9 +96,10 @@ def winner(board)
 end
 
 def play(board)
-  # until over?(board)
-  #   turn(board)
-  turn(board) until over?(board)
+  until over?(board)
+    turn(board)
+  end
+  # turn(board) until over?(board)
   if won?(board)
     puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
