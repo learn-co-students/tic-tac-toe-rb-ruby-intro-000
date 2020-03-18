@@ -87,14 +87,17 @@ def over?(board)
 end
 
 def winner(board)
-  won?(board) ? board[won?(board)[0]] : nil
+  # won?(board) ? board[won?(board)[0]] : nil
+  if winner_character = won?(board)
+    board[winning_character.first]
+  end
 end
 
 def play(board)
   until over?(board)
     turn(board)
   if won?(board)
-    puts "Congrats " + board[won?(board)[0]]
+    puts "Congrats #{winner(board)}"
   elsif draw?(board)
     puts "Cat's Game!"
   end
