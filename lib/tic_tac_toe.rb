@@ -89,10 +89,10 @@ def over?(board)
 end
 
 def winner(board)
-  # won?(board) ? board[won?(board)[0]] : nil
-  if winning_character = won?(board)
-    board[winning_character.first]
-  end
+  won?(board) ? board[won?(board)[0]] : nil
+  # if winning_character = won?(board)
+  #   board[winning_character.first]
+  # end
 end
 
 def play(board)
