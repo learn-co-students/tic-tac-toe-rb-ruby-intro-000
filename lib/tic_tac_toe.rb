@@ -132,7 +132,7 @@ end
   
 #Method tests whether the game is over either because the game is a draw or because someone one. 
   def over?(board)
-    if won?(board) || full?(board) || draw?(board)
+    if won?(board) || draw?(board)
       return true
     else 
       return false
