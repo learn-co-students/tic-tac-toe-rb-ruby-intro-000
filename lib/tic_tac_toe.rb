@@ -35,7 +35,6 @@ def position_taken?(board, index)
 end
 
 def valid_move?(board, index)
-  #index = position.to_i-1
  (index).between?(0,8) && !(position_taken?(board, index))
 end
 
@@ -46,12 +45,10 @@ def turn(board)
    if valid_move?(board, index) #4.  If the move is valid, make the move and display board.
       token = current_player(board)
       move(board, index, token)
-#      player_move(board, index, current_player(board))
       display_board(board)
     else         #5.  Otherwise (that is, if the move is invalid) ask for a new position until a valid move is received.
       turn(board)
    end
-  #move(board, position, token)
 end
 
 def turn_count(board)
