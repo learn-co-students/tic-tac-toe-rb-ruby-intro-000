@@ -96,7 +96,6 @@ def won?(board)
  end
  
  def over?(board)
-   #binding.pry 
    if won?(board) || full?(board) || draw?(board)
      return true 
    else 
@@ -124,14 +123,12 @@ def won?(board)
  end
 
  def play(board)
-    input = gets.strip
     until over?(board)
-        turn_count(board)
         turn(board)
+      end
         if won?(board) 
-         puts "Congrats #{winner(board)}"
+         puts "Congratulations #{winner(board)}!"
          elsif draw?(board)
-         puts "It is a draw"
+         puts "Cat's Game!"
     end 
-  end 
   end 
