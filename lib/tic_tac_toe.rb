@@ -25,7 +25,7 @@ def move(board, index, player)
    board[index] = player
 end
 
-def position_taken?(board, index, player)
+def position_taken?(board, index)
    if (board[index] == " ") || (board[index] == "") || (board[index] == nil)
       return false
    else
@@ -33,8 +33,8 @@ def position_taken?(board, index, player)
    end
 end
 
-def valid_move?(board, index, player)
-   if index.between?(0,8) && !position_taken?(board, index, player)
+def valid_move?(board, index)
+   if index.between?(0,8) && !position_taken?(board, index)
       return true
    end
 end
@@ -45,6 +45,7 @@ def turn(board)
    index = input_to_index(user_input)
    if valid_move?(board, index)
       move(board, index, current_player(board))
+    else
       turn(board)
    end
    display_board(board)
@@ -57,6 +58,7 @@ def turn_count(board)
          counter += 1
       end
    end
+   counter
 end
 def current_player(board)
    turn_count(board) % 2 == 0 ? "X" : "O"
@@ -68,7 +70,7 @@ def won?(board)
   board[win_combination[1]] == board[win_combination[2]] &&
   position_taken?(board, win_combination[0])
  end
-
+end
 def full?(board)
    board.all? {|i| i == "X" || i == "O"}
 end
@@ -76,11 +78,9 @@ end
 def draw?(board)
    if !won?(board) && full?(board)
      return true
-   elsif !won?(board) && !full?(board)
-     return false
-   else won?(board)
-     return false
-   end
+   else
+  return false
+  end
 end
 
 def over?(board)
@@ -111,6 +111,6 @@ def play(board)
       winner(board) == "X" || winner(board) == "O"
       puts "Congratulations #{winner(board)}!"
    elsif draw?(board)
-      puts "Draw"
+      puts "Cat's Game!"
    end
 end
