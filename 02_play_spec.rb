@@ -2,8 +2,7 @@ require_relative '../lib/tic_tac_toe.rb'
 
 describe './lib/tic_tac_toe.rb' do
   describe '#play' do
-
-it 'asks for players input on a turn of the game' do
+    it 'asks for players input on a turn of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
       allow(self).to receive(:over?).and_return(false, true)
@@ -12,8 +11,6 @@ it 'asks for players input on a turn of the game' do
 
       play(board)
     end
-
-
 
     it 'checks if the game is over after every turn' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -73,7 +70,6 @@ it 'asks for players input on a turn of the game' do
       play(board)
     end
 
-
     it 'stops playing if someone has won' do
       board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
@@ -118,5 +114,6 @@ it 'asks for players input on a turn of the game' do
 
       play(board)
     end
+
   end
 end
