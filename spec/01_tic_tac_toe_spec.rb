@@ -204,8 +204,14 @@ describe './lib/tic_tac_toe.rb' do
       expect(draw?(board)).to be_truthy
     end
 
-    it 'returns false for a won game' do
+    it 'returns false for a full won game' do
       board = %w[X O X O X X O O X]
+
+      expect(draw?(board)).to be_falsey
+    end
+
+    it 'returns false for a not full won game' do
+      board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
 
       expect(draw?(board)).to be_falsey
     end
