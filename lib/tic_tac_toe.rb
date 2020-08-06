@@ -43,5 +43,4 @@ WIN_COMBINATIONS = [
         position == "X" || position == "O"
     end
     num_of_turns = taken_positions_array.length
-    return num_of_turns
   end
