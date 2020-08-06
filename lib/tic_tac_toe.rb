@@ -42,5 +42,5 @@ WIN_COMBINATIONS = [
     taken_positions_array = board.select do |position|
         position == "X" || position == "O"
     end
-    num_of_turns = taken_positions_array.length
+    taken_positions_array.length
   end
