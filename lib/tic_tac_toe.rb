@@ -18,4 +18,9 @@ WIN_COMBINATIONS = [
   def input_to_index(user_input)
     user_input.chomp.to_i-1
   end
-    
+  def move(board, position, player_token)
+    board[position] = player_token
+  end
+  def position_taken?(board, position)
+    !(board[position] != "X" && board[position] != "O")
+  end
