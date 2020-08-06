@@ -40,7 +40,8 @@ WIN_COMBINATIONS = [
   end
   def turn_count(board)
     taken_positions_array = board.select do |position|
-        position_taken?(board, position)
+        position == "X" || position == "O"
     end
     num_of_turns = taken_positions_array.length
+    return num_of_turns
   end

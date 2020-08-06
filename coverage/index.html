@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2020-08-06T14:37:12-04:00">2020-08-06T14:37:12-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2020-08-06T14:50:27-04:00">2020-08-06T14:50:27-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">70.37%</span></span>
+    (<span class="covered_percent"><span class="red">75.0%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.9
+         2.1
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>1</b> files in total.
-    <b>27</b> relevant lines. 
-    <span class="green"><b>19</b> lines covered</span> and
-    <span class="red"><b>8</b> lines missed </span>
+    <b>28</b> relevant lines. 
+    <span class="green"><b>21</b> lines covered</span> and
+    <span class="red"><b>7</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,12 +52,12 @@
       
       <tr>
         <td class="strong"><a href="#1bb498621182b7e17f58c01982280a895fee405d" class="src_link" title="lib/tic_tac_toe.rb">lib/tic_tac_toe.rb</a></td>
-        <td class="red strong">70.37 %</td>
-        <td>46</td>
-        <td>27</td>
-        <td>19</td>
-        <td>8</td>
-        <td>1.9</td>
+        <td class="red strong">75.0 %</td>
+        <td>47</td>
+        <td>28</td>
+        <td>21</td>
+        <td>7</td>
+        <td>2.1</td>
       </tr>
       
     </tbody>
@@ -79,11 +79,11 @@
         <div class="source_table" id="1bb498621182b7e17f58c01982280a895fee405d">
   <div class="header">
     <h3>lib/tic_tac_toe.rb</h3>
-    <h4><span class="red">70.37 %</span> covered</h4>
+    <h4><span class="red">75.0 %</span> covered</h4>
     <div>
-      <b>27</b> relevant lines. 
-      <span class="green"><b>19</b> lines covered</span> and
-      <span class="red"><b>8</b> lines missed.</span>
+      <b>28</b> relevant lines. 
+      <span class="green"><b>21</b> lines covered</span> and
+      <span class="red"><b>7</b> lines missed.</span>
     </div>
   </div>
   
@@ -234,8 +234,8 @@
           <code class="ruby">  def position_taken?(board, position)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="25">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="25">
+          <span class="hits">6</span>
           
           <code class="ruby">    !(board[position] != &quot;X&quot; &amp;&amp; board[position] != &quot;O&quot;)</code>
         </li>
@@ -342,10 +342,10 @@
           <code class="ruby">    taken_positions_array = board.select do |position|</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="9" data-linenumber="43">
+          <span class="hits">9</span>
           
-          <code class="ruby">        position_taken?(board, position)</code>
+          <code class="ruby">        position == &quot;X&quot; || position == &quot;O&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="44">
@@ -354,13 +354,19 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="45">
-          
+        <li class="covered" data-hits="1" data-linenumber="45">
+          <span class="hits">1</span>
           
           <code class="ruby">    num_of_turns = taken_positions_array.length</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="46">
+        <li class="covered" data-hits="1" data-linenumber="46">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    return num_of_turns</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
           
           
           <code class="ruby">  end</code>
