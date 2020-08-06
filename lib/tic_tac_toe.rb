@@ -27,3 +27,20 @@ WIN_COMBINATIONS = [
   def valid_move?(board, position)
     position.between?(0,8) && !position_taken?(board, position)
   end
+  def turn(board, player_token)
+      puts "Please enter 1–9"
+      user_input = gets
+      position = input_to_index(user_input)
+      if valid_move?(board, position)
+        move(board, position, player_token)
+        display_board(board, player_token)
+      else
+        turn(board)
+      end
+  end
+  def turn_count(board)
+    taken_positions_array = board.select do |position|
+        position_taken?(board, position)
+    end
+    num_of_turns = taken_positions_array.length
+  end
