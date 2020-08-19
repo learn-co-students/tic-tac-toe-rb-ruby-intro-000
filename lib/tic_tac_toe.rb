@@ -27,13 +27,14 @@ WIN_COMBINATIONS = [
   def valid_move?(board, position)
     position.between?(0,8) && !position_taken?(board, position)
   end
-  def turn(board, player_token)
+  def turn(board)
       puts "Please enter 1–9"
       user_input = gets
       position = input_to_index(user_input)
       if valid_move?(board, position)
+        player_token = current_player(board)
         move(board, position, player_token)
-        display_board(board, player_token)
+        display_board(board)
       else
         turn(board)
       end
@@ -43,4 +44,11 @@ WIN_COMBINATIONS = [
         position == "X" || position == "O"
     end
     taken_positions_array.length
+  end
+  def current_player(board)
+    if turn_count(board) % 2 == 0
+      player_token = "X"
+    elsif turn_count(board) % 2 != 0
+      player_token = "O"
+    end
   end
