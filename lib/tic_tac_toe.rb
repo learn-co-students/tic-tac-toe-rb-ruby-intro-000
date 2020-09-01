@@ -15,18 +15,23 @@ WIN_COMBINATIONS = [
     puts "-----------"
     puts " #{board[6]} | #{board[7]} | #{board[8]} "
   end
+  
   def input_to_index(user_input)
     user_input.chomp.to_i-1
   end
+  
   def move(board, position, player_token)
     board[position] = player_token
   end
+  
   def position_taken?(board, position)
     !(board[position] != "X" && board[position] != "O")
   end
+  
   def valid_move?(board, position)
     position.between?(0,8) && !position_taken?(board, position)
   end
+  
   def turn(board)
       puts "Please enter 1–9"
       user_input = gets
@@ -39,16 +44,37 @@ WIN_COMBINATIONS = [
         turn(board)
       end
   end
+  
   def turn_count(board)
     taken_positions_array = board.select do |position|
         position == "X" || position == "O"
     end
     taken_positions_array.length
   end
+  
   def current_player(board)
     if turn_count(board) % 2 == 0
       player_token = "X"
     elsif turn_count(board) % 2 != 0
       player_token = "O"
+    end
+  end
+  
+  def won?(board)
+    winning_output = WIN_COMBINATIONS.each do |winning_streak|
+     win_X = winning_streak.all? do |position|
+      character = board[position] 
+      character == "X"
+     end
+     win_O = winning_streak.all? do |position|
+      character = board[position] 
+      character == "O"
+     end
+     if win_X || win_O
+      return winning_streak
+     end
+    end
+    if winning_output == WIN_COMBINATIONS
+      return false
     end
   end
