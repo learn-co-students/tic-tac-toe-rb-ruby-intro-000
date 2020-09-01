@@ -1,3 +1,5 @@
+require 'pry'
+
 WIN_COMBINATIONS = [
     [0,1,2],
     [3,4,5],
@@ -78,3 +80,33 @@ WIN_COMBINATIONS = [
       return false
     end
   end
+  
+  def full?(board)
+    board.all? do |position|
+      position == "X" || position == "O"
+    end
+  end
+
+  def draw?(board)
+    full?(board) && !won?(board)
+  end
+
+  def over?(board)
+    won?(board) || draw?(board) || full?(board)
+  end
+
+  def winner(board)
+    if won?(board) != false
+      board[won?(board).first]
+    end
+  end
+
+  def play(board)
+    turn_count(board)
+    current_player(board)
+    turn(board)
+    over?(board)
+    winner(board)
+  end
+
+
