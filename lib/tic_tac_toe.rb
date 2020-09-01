@@ -75,7 +75,6 @@ WIN_COMBINATIONS = [
     # end
     # end
 
-
     winning_output = WIN_COMBINATIONS.each do |winning_streak|
      win_X = winning_streak.all? do |position|
       character = board[position] 
