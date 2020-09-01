@@ -102,11 +102,17 @@ WIN_COMBINATIONS = [
   end
 
   def play(board)
-    turn_count(board)
-    current_player(board)
-    turn(board)
-    over?(board)
-    winner(board)
+    until over?(board)
+      turn_count(board)
+      current_player(board)
+      turn(board)
+      winner(board)
+    end
+    if winner(board)
+      puts "Congratulations #{winner(board)}!"
+    end
+    if draw?(board)
+      puts "Cat's Game!"
+    end
   end
-
-
+# google for autosave on vscode
