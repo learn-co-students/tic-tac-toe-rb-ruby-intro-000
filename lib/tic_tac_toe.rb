@@ -63,6 +63,19 @@ WIN_COMBINATIONS = [
   end
   
   def won?(board)
+    # If winning_combination
+    # We want to ennumerate over win_combinations and 
+    #   see if any of the arrays in win_combinations contain all x's or all o's. 
+    # return win_combination array
+    
+    # winning = []
+    # WIN_COMBINATIONS.each do |winning_array|
+    #   winning.push(winning_array) if winning_array.all? {|i| i == "X" || i == "O"}
+    #   winning_array.length > 0 ? winning_array : false 
+    # end
+    # end
+
+
     winning_output = WIN_COMBINATIONS.each do |winning_streak|
      win_X = winning_streak.all? do |position|
       character = board[position] 
@@ -96,22 +109,26 @@ WIN_COMBINATIONS = [
   end
 
   def winner(board)
-    if won?(board) != false
+    if won?(board)
       board[won?(board).first]
     end
   end
 
+  # def winner(board)
+  #   if won?(board)
+  #     return current_player(board)
+  #   end
+  # end
+
   def play(board)
     until over?(board)
-      turn_count(board)
       current_player(board)
       turn(board)
-      winner(board)
+   #   winner(board)
     end
     if winner(board)
       puts "Congratulations #{winner(board)}!"
-    end
-    if draw?(board)
+    elsif draw?(board)
       puts "Cat's Game!"
     end
   end
