@@ -38,9 +38,14 @@ def valid_move?(board, index)
 end
 
 def turn_count(board)
-  counter = 0
-for each move make counter + 1
-
+  turn_number = 0
+board.each do |turn|
+if turn == "X" || turn == "O"
+turn_number += 1
+end
+end
+turn_number
+end
 
 # def turn(board)
 #   puts "Please enter 1-9:"
