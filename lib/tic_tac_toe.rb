@@ -1,6 +1,7 @@
 def play(board)
   while turn_count(board) <= 8
-  
+    sign = current_player(board)
+    
     turn(board)
     puts "turn count is #{turn_count(board)}"
 
