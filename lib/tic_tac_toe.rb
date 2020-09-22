@@ -79,8 +79,17 @@ end
 
 def full?(board)
   board.each do |space|
-    if board[space[0]] == board[space[1]] && board[space[1]] == board[space[2]] && position_taken?(board, space[0])
+    if space == "X" || space == "O"  && position_taken?(board)
+    # if board[space[0]] == board[space[1]] && board[space[1]] == board[space[2]] && position_taken?(board, space[0])
     return true
+  else !position_taken?(board)
+    return false
     end
   end
 end
+
+# def draw?(board)
+#   if board = full? && board != won?
+#     true
+#   end
+# end
