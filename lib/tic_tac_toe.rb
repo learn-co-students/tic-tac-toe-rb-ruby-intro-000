@@ -85,9 +85,22 @@ def full?(board)
 end
 
 def draw?(board)
-  board.any? full? || !won?
+  full?(board) && !won?(board)
 end
 
-# def over?(board)
-#   board.any? full? || won? || draw?
-# end
+def over?(board)
+  full?(board) || won?(board) || draw?(board)
+end
+
+def winner(board)
+  win = won?(board)
+  if win!=false
+    return board[win[0]]
+  end
+end
+
+def play(board)
+until counter == 20
+  puts "The current number is less than 20."
+  counter += 1
+end
