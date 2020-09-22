@@ -79,7 +79,7 @@ end
 
 def full?(board)
   board.each do |space|
-    if board[space[0]] == board[space[1]] && board[space[1]] == board[space[2]] && position_taken?(board, combinations[0])
+    if board[space[0]] == board[space[1]] && board[space[1]] == board[space[2]] && position_taken?(board, space[0])
     return true
     end
   end
