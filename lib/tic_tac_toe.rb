@@ -85,10 +85,9 @@ def full?(board)
 end
 
 def draw?(board)
-  board.full? && !won?
+  board.any? full? || !won?
 end
-end
-#
+
 # def over?(board)
 #   board.any? full? || won? || draw?
 # end
