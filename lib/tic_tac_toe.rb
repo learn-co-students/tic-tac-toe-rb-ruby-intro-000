@@ -1,9 +1,10 @@
 def play(board)
   while turn_count(board) <= 8
-    sign = current_player(board)
+    
     
     turn(board)
-    puts "turn count is #{turn_count(board)}"
+    
+    #puts "turn count is #{turn_count(board)}"
 
 #    won?(board)
     if over?(board) == true
@@ -38,7 +39,7 @@ def input_to_index(input)
   index = input.to_i - 1   
 end
 
-#def move(board, index, sign="X")
+#def move(board, index, sign)
 def move(board, index, sign)
   board[index] = sign
 end
@@ -85,7 +86,7 @@ def turn(board)
   index = input_to_index(input)
   puts index
   if valid_move?(board, index) == true
-    move(board, index, sign)
+    move(board, index, sign=current_player(board))
     display_board(board)
   else
    puts "your move is not valid, please try again"
