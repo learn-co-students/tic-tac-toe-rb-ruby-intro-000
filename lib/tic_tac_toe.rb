@@ -47,22 +47,40 @@ end
 turn_number
 end
 
-# def turn(board)
-#   puts "Please enter 1-9:"
-#   input = gets.strip
-#   index = input_to_index(input)
-# if valid_move?(board, index)
-#   move(board, index)
-#   display_board(board)
-# else
-#   turn(board)
-# end
-# end
+def current_player(board)
+  if turn_count(board).even?
+  "X"
+else
+  "O"
+  end
+end
 
-# if valid_move?(board, index)
-#   move(board, index)
-#  else
-#   turn(board)
-#  end
-#  display_board(board)
-# end
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+if valid_move?(board, index)
+  character = current_player(board)
+  move(board, index, character)
+  display_board(board)
+else
+  turn(board)
+end
+end
+
+def won?(board)
+  WIN_COMBINATIONS.each do |combinations|
+    if board[combinations[0]] == board[combinations[1]] && board[combinations[1]] == board[combinations[2]] && position_taken?(board, combinations[0])
+  return combinations
+  end
+ end
+ return false
+end
+
+def full?(board)
+  board.each do |space|
+    if board[space[0]] == board[space[1]] && board[space[1]] == board[space[2]] && position_taken?(board, combinations[0])
+    return true
+    end
+  end
+end
