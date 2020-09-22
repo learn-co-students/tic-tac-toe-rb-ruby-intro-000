@@ -4,8 +4,10 @@ def play(board)
     turn(board)
     puts "turn count is #{turn_count(board)}"
 
-
-    over?(board)
+    won?(board)
+    if over?(board) == true
+      puts "winner is #{winner(board)}"
+    
   end
   return puts "game has ended"
 end
