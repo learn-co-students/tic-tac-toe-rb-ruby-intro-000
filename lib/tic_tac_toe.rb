@@ -4,12 +4,14 @@ def play(board)
     turn(board)
     puts "turn count is #{turn_count(board)}"
 
-    won?(board)
+#    won?(board)
     if over?(board) == true
       puts "winner is #{winner(board)}"
+      return
+    end
     
   end
-  return puts "game has ended"
+  draw?(board)
 end
 
 WIN_COMBINATIONS = [
@@ -82,7 +84,7 @@ def turn(board)
   index = input_to_index(input)
   puts index
   if valid_move?(board, index) == true
-    move(board, index, sign="X")
+    move(board, index, sign)
     display_board(board)
   else
    puts "your move is not valid, please try again"
