@@ -100,7 +100,12 @@ def winner(board)
 end
 
 def play(board)
-until counter == 20
-  puts "The current number is less than 20."
-  counter += 1
+turn(board)
+until over?(board)
+if won?(board)
+  puts "congratulations winner!"
+else draw?(board)
+  puts "DRAW GAME!"
+end
+end
 end
