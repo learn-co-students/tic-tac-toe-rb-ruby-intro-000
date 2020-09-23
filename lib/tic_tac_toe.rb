@@ -100,12 +100,10 @@ def winner(board)
 end
 
 def play(board)
-turn(board)
-until over?(board)
+turn(board) until over?(board)
 if won?(board)
-  puts "congratulations winner!"
-else draw?(board)
-  puts "DRAW GAME!"
-end
+  puts "Congratulations #{winner(board)}!"
+else
+  puts "Cat's Game!"
 end
 end
