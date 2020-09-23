@@ -7,14 +7,19 @@ def play(board)
     #puts "turn count is #{turn_count(board)}"
 
 #    won?(board)
-    if over?(board) == true
+    if over?(board) == true && winner(board) != nil
       puts "winner is #{winner(board)}"
       return
+    elsif over?(board) == true && draw?(board) == true
+      puts "Cat's Game!"
+      return
+      
     end
     
   end
-  draw?(board)
+  #draw?(board)
 end
+
 
 WIN_COMBINATIONS = [
   [0,1,2],
@@ -81,10 +86,10 @@ end
 
 
 def turn(board)
-  puts "Please enter 1-9:"
+  puts "#{current_player(board)} Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  puts index
+  #puts index
   if valid_move?(board, index) == true
     move(board, index, sign=current_player(board))
     display_board(board)
