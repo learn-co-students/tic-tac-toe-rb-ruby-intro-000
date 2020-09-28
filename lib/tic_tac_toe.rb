@@ -1,5 +1,4 @@
 def greeting(input)
-puts "Please enter 1-9:"
 return input
 end
 
@@ -45,20 +44,16 @@ end
 
 
 def valid_range?(index)
-   #binding.pry
   good_range = index >= 0 && index < 9
 return good_range
 end
 
 def valid_move?(board, index)
-  #binding.pry
 !position_taken?(board, index) && valid_range?(index)
 end
 
 def move(board, index, character)
-  if valid_move?(board, index)
-    board[index] = character
-  end
+  board[index] = character
 end
 
 
@@ -66,12 +61,13 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
+  current_player(board)
   while !valid_move?(board, index)
     puts "Please enter 1-9:"
     input = gets.strip
     index = input_to_index(input)
   end
-  move(board, index, character = "X")
+  move(board, index, current_player(board))
   display_board(board)
 end
 
@@ -86,10 +82,13 @@ def turn_count(board)
 end
 
 def play(board)
-  count = 0
-  until count == 8
-    count += 1
+  until over?(board)
     turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat\'s Game!"
   end
 end
 
@@ -106,7 +105,6 @@ def full?(board)
     taken == "X" || taken == "O"
   end
 end
-#scan board; return taken spaces; taken spaces = [0-8] -> full is true.
 
 def draw?(board)
 !(won?(board)) && full?(board)
@@ -131,5 +129,14 @@ def winner(board)
     #no iterations here
     index = combo_array[0]
     return board[index]
+  end
+end
+
+def congratulate(board)
+  if winner(board) == "X"
+    puts "Congratulations X!"
+  elsif winner(board) == "O"
+    puts "Congratulations O!"
+  else puts "Cat's Game!"
   end
 end
