@@ -1,9 +1,19 @@
+require 'pry'
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
   puts " #{board[3]} | #{board[4]} | #{board[5]} "
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
+  puts "won?"
+  puts won?(board)
+  puts "full?"
+  puts full?(board)
+  puts "draw?"
+  puts draw?(board)
+  puts "over?"
+  puts over?(board)
 end
 
 def input_to_index(user_input)
@@ -24,6 +34,7 @@ def turn(board)
   input = gets.strip
   index = input_to_index(input)
   if !valid_move?(board, index)
+    puts "Input is invalid. Try another number."
     turn(board)
   end
   move(board, index, current_player(board))
