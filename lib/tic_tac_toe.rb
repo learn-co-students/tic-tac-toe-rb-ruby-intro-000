@@ -37,10 +37,10 @@ def play(board)
   until over?(board) == true
     turn(board)
   end
-  if won?(board) == true
-    "Congratulations, #{winner}!"
+  if won?(board)
+    puts "Congratulations, #{winner}!"
   elsif draw?(board) == true
-    "Cat's Game!"
+    puts "Cat's Game!"
   end
 end
 
@@ -85,6 +85,7 @@ def won?(board)
     if win_1 == true && win_2 == true && win_3 == true &&
       position_1 == "X" && position_2 == "X" && position_3 == "X"
       return combo
+
     elsif win_1 == true && win_2 == true && win_3 == true &&
       position_1 == "O" && position_2 == "O" && position_3 == "O"
       return combo
