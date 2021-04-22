@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/jeffreymartinez/code/flatiron/flatiron_labs/tic-tac-toe-rb-ruby-intro-000/lib/tic_tac_toe.rb": [
+      "/Users/jeffreymartinez/Desktop/Desktop/Code/ruby/tic-tac-toe-rb-ruby-intro-000/lib/tic_tac_toe.rb": [
         null,
         null,
         1,
@@ -15,11 +15,11 @@
         null,
         null,
         1,
-        5,
-        5,
-        5,
-        5,
-        5,
+        24,
+        24,
+        24,
+        24,
+        24,
         null,
         null,
         1,
@@ -48,6 +48,7 @@
         20,
         20,
         20,
+        19,
         19,
         null,
         1,
@@ -95,6 +96,6 @@
         null
       ]
     },
-    "timestamp": 1606956825
+    "timestamp": 1619061090
   }
 }
