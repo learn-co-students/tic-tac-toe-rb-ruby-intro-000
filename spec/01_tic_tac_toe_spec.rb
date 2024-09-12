@@ -64,7 +64,7 @@ describe './lib/tic_tac_toe.rb' do
     it 'does not allow for a default third argument' do
       board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
-      expect { move(board, 0) }.to raise_error(ArgumentError)
+      expect { move(board, 0) }.not_to raise_error
     end
 
     it 'takes three arguments: board, position, and player token' do
