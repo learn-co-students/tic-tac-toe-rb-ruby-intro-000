@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+input = 10
+index = 10
+
 
 require_relative '../lib/tic_tac_toe'
 
@@ -6,5 +9,6 @@ board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 puts "Welcome to Tic Tac Toe!"
 display_board(board)
-
+greeting(input)
 play(board)
+turn_count(board)
