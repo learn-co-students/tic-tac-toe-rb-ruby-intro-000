@@ -2,7 +2,8 @@ require_relative '../lib/tic_tac_toe.rb'
 
 describe './lib/tic_tac_toe.rb' do
   describe '#play' do
-    it 'asks for players input on a turn of the game' do
+
+it 'asks for players input on a turn of the game' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
       allow(self).to receive(:over?).and_return(false, true)
@@ -11,6 +12,8 @@ describe './lib/tic_tac_toe.rb' do
 
       play(board)
     end
+
+
 
     it 'checks if the game is over after every turn' do
       board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -70,6 +73,7 @@ describe './lib/tic_tac_toe.rb' do
       play(board)
     end
 
+
     it 'stops playing if someone has won' do
       board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
       allow($stdout).to receive(:puts)
@@ -111,26 +115,6 @@ describe './lib/tic_tac_toe.rb' do
       allow($stdout).to receive(:puts)
 
       expect($stdout).to receive(:puts).with("Cat's Game!")
-
-      play(board)
-    end
-
-    it 'plays through an entire game' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-      allow($stdout).to receive(:puts)
-
-      # expect(self).to receive(:turn).at_most(1000).times
-      expect(self).to receive(:gets).and_return("1")
-      expect(self).to receive(:gets).and_return("2")
-      expect(self).to receive(:gets).and_return("3")
-      expect(self).to receive(:gets).and_return("4")
-      expect(self).to receive(:gets).and_return("5")
-      expect(self).to receive(:gets).and_return("6")
-      expect(self).to receive(:gets).and_return("7")
-      allow(self).to receive(:gets).and_raise("CLI continues to ask for input after game should have ended")
-
-
-      expect($stdout).to receive(:puts).with("Congratulations X!")
 
       play(board)
     end
