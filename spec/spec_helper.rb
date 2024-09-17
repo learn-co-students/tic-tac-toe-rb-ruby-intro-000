@@ -3,6 +3,7 @@ SimpleCov.start do
   add_filter "/spec"
 end
 
+
 RSpec.configure do |config|
   config.order = :default
 end
@@ -12,8 +13,6 @@ RSpec::Matchers.define :include_array do |expected|
     actual.any?{|array| match_array(expected).matches?(array)}
   end
 end
-
-RSpec::Expectations.configuration.warn_about_potential_false_positives = false
 
 def run_file(file)
   eval(File.read(file), binding)
