@@ -1,27 +1,21 @@
-describe "./bin/tictactoe" do
-  it 'prints "Welcome to Tic Tac Toe!"' do
+describe "bin/tictactoe" do
+  it 'instantiates an instance of TicTacToe' do
+    game = TicTacToe.new
     allow($stdout).to receive(:puts)
-    allow(self).to receive(:play)
+    allow(game).to receive(:play)
+    allow(game).to receive(:gets).and_return("1")
 
-    expect($stdout).to receive(:puts).with("Welcome to Tic Tac Toe!"), "Make sure bin/tictactoe has code that can output 'Welcome to Tic Tac Toe!' exactly."
+    expect(TicTacToe).to receive(:new).and_return(game)
 
     run_file("./bin/tictactoe")
   end
 
-  it '`board` is an array with 9 strings with an empty space value, " "' do
-    allow($stdout).to receive(:puts)
-    allow(self).to receive(:play)
-
-    board = get_variable_from_file("./bin/tictactoe", "board")
-
-    expect(board).to match_array([" "," "," "," "," "," "," "," "," "])
-  end
-
-  it 'calls #play passing in the board array' do
+  it 'calls #play on the instance of TicTacToe' do
+    game = TicTacToe.new
     allow($stdout).to receive(:puts)
 
-    expect(self).to receive(:play).with(kind_of(Array))
-
+    expect(TicTacToe).to receive(:new).and_return(game)
+    expect(game).to receive(:play)
     run_file("./bin/tictactoe")
   end
 end
