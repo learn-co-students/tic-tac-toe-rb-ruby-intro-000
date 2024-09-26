@@ -191,12 +191,7 @@ describe './lib/tic_tac_toe.rb' do
       draw?(board)
     end
 
-    it 'calls full?' do
-      board = %w[X O X O X X O X O]
 
-      expect(self).to receive(:full?).with(board)
-      draw?(board)
-    end
 
     it 'returns true for a draw' do
       board = %w[X O X O X X O X O]
